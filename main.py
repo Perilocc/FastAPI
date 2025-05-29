@@ -1,16 +1,4 @@
-from fastapi import FastAPI
-from models import Produto
+import uvicorn
 
-app = FastAPI()
-
-@app.get("/")
-def home():
-    return {"message": "Teste FastAPI!"}
-
-@app.get("/produto/{produto_id}")
-def read_item(produto_id: int, q: str = None):
-    return {"Id do Produto": produto_id, "Query Parameter": q}
-
-@app.post("/produto/")
-def criar_produto(produto: Produto):
-    return {"mensagem": "Produto criado com sucesso!", "produto": produto}
+if __name__ == "__main__":
+    uvicorn.run("FastAPI.main:app", reload=True)
